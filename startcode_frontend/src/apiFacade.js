@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/CA2_Back_End_war_exploded";
+const URL = "http://localhost:8080/devops_starter_war_exploded";
 
 function handleHttpErrors(res) {
     if (!res.ok) {
@@ -24,7 +24,7 @@ function apiFacade() {
             .then(res => {
                 setResponseText(res.msg);
             }
-        )
+            )
     }
 
     const fetchUserData = (role) => {
