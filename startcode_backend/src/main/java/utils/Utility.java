@@ -63,9 +63,6 @@ public class Utility {
     }
     
     public static void main(String[] args) throws UnsupportedEncodingException {
-//        printAllProperties();
-        
-        //Test json2DTO and back again
         String str2 = "{'id':1, 'str1':'Dette er den første tekst', 'str2':'Her er den ANDEN'}";
         RenameMeDTO rmDTO = json2DTO(str2);
         System.out.println(rmDTO);
@@ -73,5 +70,4 @@ public class Utility {
         String backAgain = DTO2json(rmDTO);
         System.out.println(backAgain);
     }
-
 }
