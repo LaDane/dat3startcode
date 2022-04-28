@@ -17,14 +17,19 @@ function apiFacade() {
             .then(res => { setToken(res.token) })
     }
 
+    const signup = (user, password, setResponseText) => {
+        const options = makeOptions("POST", false, { username: user, password: password });
+        return fetch(URL + "/api/signup", options)
+            .then(handleHttpErrors)
+            .then(res => {
+                setResponseText(res.msg);
+            }
+        )
+    }
+
     const fetchUserData = (role) => {
         const options = makeOptions("GET", true); //True add's the token
         return fetch(URL + `/api/info/${role}`, options).then(handleHttpErrors);
-    }
-
-    const fetchBeerJoke = () => {
-        const options = makeOptions("GET", false); //True add's the token
-        return fetch(URL + "/api/xxx/data", options).then(handleHttpErrors);
     }
 
     const setToken = (token) => {
@@ -66,9 +71,9 @@ function apiFacade() {
         getToken,
         loggedIn,
         login,
+        signup,
         logout,
-        fetchUserData,
-        fetchBeerJoke
+        fetchUserData
     }
 }
 
