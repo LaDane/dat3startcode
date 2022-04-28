@@ -1,45 +1,81 @@
-# Getting Started with Create React App
+# Frontend setup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Before starting
 
-## Available Scripts
+>1) Install packages
+>```npm install```
+>```npm install react-icons --save```
+>```npm install jwt-decode```
+>```npm install --save styled-components```
+
+## Deploying to a subdirectory with Ubuntu & NGINX
+### Front End
+>1) In package.json, add a homepage key
+>```"homepage":"/{subdirectory}";```
+
+>2) In App.jsx, change basename
+>```<Router basename="/{subdirectory}">```
+
+>3) In deploy.sh, change:
+>```PROJECT_NAME="{subdirectory}"```
+>```DROPLET_URL="{droplet IP}"```
+
+### Ubuntu
+>1) SSH into droplet
+
+>2) ```"cd /var/www/"```
+
+>3) ```"mkdir {subdirectory}"```
+
+>4) ```"chmod -R 777 {subdirectory}"```
+
+>5) ```"nano /etc/nginx/sites-enabled/default"```
+
+>6) Create new location in NGINX config
+> ```
+> location ^~ /{subdirectory} {
+>	alias /var/www/{subdirectory};
+> 	try_files $uri $uri/ /{subdirectory}/index.html;
+> }
+> ```
+
+>7) Save + exit
+
+### Git Bash from front directory
+>1) Run deploy.sh from terminal
+>```./deploy.sh```
+
+### Ubuntu
+>1) Check config file for errors
+>```"nginx -t"```
+
+>2) Restart NGINX service
+>```"service nginx restart"```
+
+## Available Scripts from React
 
 In the project directory, you can run:
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Open [http://localhost:3000/startcode](http://localhost:3000)
 
 ### `npm test`
-
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ### `npm run eject`
-
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
 If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Learn More about React
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
@@ -69,8 +105,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-# CA2_Frontend
 
-npm install react-icons --save
-npm install jwt-decode
-npm install --save styled-components
