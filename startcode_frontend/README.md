@@ -2,64 +2,68 @@
 
 ## Before starting
 
->1) Install packages
->```npm install```
->```npm install react-icons --save```
->```npm install jwt-decode```
->```npm install --save styled-components```
+> 1.  Install packages
+>     `npm install` >`npm install react-icons --save` >`npm install jwt-decode` >`npm install --save styled-components`
 
 ## Deploying to a subdirectory with Ubuntu & NGINX
+
 ### Front End
->1) In package.json, add a homepage key
->```"homepage":"/{subdirectory}";```
 
->2) In App.jsx, change basename
->```<Router basename="/{subdirectory}">```
+> 1.  In package.json, add a homepage key
+>     `"homepage":"/{subdirectory}",`
 
->3) In deploy.sh, change:
->```PROJECT_NAME="{subdirectory}"```
->```DROPLET_URL="{droplet IP}"```
+> 2.  In App.jsx, change basename
+>     `<Router basename="/{subdirectory}">`
+
+> 3.  In deploy.sh, change:
+>     `PROJECT_NAME="{subdirectory}"` >`DROPLET_URL="{droplet IP}"`
 
 ### Ubuntu
->1) SSH into droplet
 
->2) ```"cd /var/www/"```
+> 1.  SSH into droplet
 
->3) ```"mkdir {subdirectory}"```
+> 2.  `"cd /var/www/"`
 
->4) ```"chmod -R 777 {subdirectory}"```
+> 3.  `"mkdir {subdirectory}"`
 
->5) ```"nano /etc/nginx/sites-enabled/default"```
+> 4.  `"chmod -R 777 {subdirectory}"`
 
->6) Create new location in NGINX config
+> 5.  `"nano /etc/nginx/sites-enabled/default"`
+
+> 6.  Create new location in NGINX config
+>
 > ```
 > location ^~ /{subdirectory} {
->	alias /var/www/{subdirectory};
+> 	alias /var/www/{subdirectory};
 > 	try_files $uri $uri/ /{subdirectory}/index.html;
 > }
 > ```
 
->7) Save + exit
+> 7.  Save + exit
 
 ### Git Bash from front directory
->1) Run deploy.sh from terminal
->```./deploy.sh```
+
+> 1.  Run deploy.sh from terminal
+>     `./deploy.sh`
 
 ### Ubuntu
->1) Check config file for errors
->```"nginx -t"```
 
->2) Restart NGINX service
->```"service nginx restart"```
+> 1.  Check config file for errors
+>     `"nginx -t"`
+
+> 2.  Restart NGINX service
+>     `"service nginx restart"`
 
 ## Available Scripts from React
 
 In the project directory, you can run:
 
 ### `npm start`
+
 Open [http://localhost:3000/startcode](http://localhost:3000)
 
 ### `npm test`
+
 Launches the test runner in the interactive watch mode.\
 
 ### `npm run build`
@@ -70,10 +74,9 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 ### `npm run eject`
+
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-
 
 ## Learn More about React
 
@@ -104,5 +107,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
