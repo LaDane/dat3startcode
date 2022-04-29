@@ -20,9 +20,11 @@
 >     `"homepage":"/{subdirectory}",`
 
 > 2.  In App.jsx, change basename
+>
 >     `<Router basename="/{subdirectory}">`
 
 > 3.  In deploy.sh, change:
+>
 >     `PROJECT_NAME="{subdirectory}"` >`DROPLET_URL="{droplet IP}"`
 
 ### Ubuntu
@@ -51,14 +53,17 @@
 ### Git Bash from front-end directory
 
 > 1.  Run deploy.sh from terminal
+>
 >     `./deploy.sh`
 
 ### Ubuntu
 
 > 1.  Check config file for errors
+>
 >     `"nginx -t"`
 
 > 2.  Restart NGINX service
+>
 >     `"service nginx restart"`
 
 ## Available Scripts from React
