@@ -15,7 +15,7 @@
 
 ### Front End
 
-> 1.  In package.json, add a homepage key
+> 1.  In package.json, change homepage value
 >
 >     `"homepage":"/{subdirectory}",`
 
