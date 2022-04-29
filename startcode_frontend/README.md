@@ -25,7 +25,9 @@
 
 > 3.  In deploy.sh, change:
 >
->     `PROJECT_NAME="{subdirectory}"` >`DROPLET_URL="{droplet IP}"`
+>     `PROJECT_NAME="{subdirectory}"`
+>
+>     `DROPLET_URL="{droplet IP}"`
 
 ### Ubuntu
 
