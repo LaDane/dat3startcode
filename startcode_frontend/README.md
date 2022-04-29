@@ -16,6 +16,7 @@
 ### Front End
 
 > 1.  In package.json, add a homepage key
+>
 >     `"homepage":"/{subdirectory}",`
 
 > 2.  In App.jsx, change basename
