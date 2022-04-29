@@ -3,10 +3,13 @@
 ## Before starting
 
 > 1.  Install packages
->     `npm install`
->     `npm install react-icons --save`
->     `npm install jwt-decode`
->     `npm install --save styled-components`
+>
+> ```
+>     npm install
+>     npm install react-icons --save
+>     npm install jwt-decode
+>     npm install --save styled-components
+> ```
 
 ## Deploying to a subdirectory with Ubuntu & NGINX
 
@@ -44,7 +47,7 @@
 
 > 7.  Save + exit
 
-### Git Bash from front directory
+### Git Bash from front-end directory
 
 > 1.  Run deploy.sh from terminal
 >     `./deploy.sh`
