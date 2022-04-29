@@ -41,7 +41,7 @@
 >
 >     `"mkdir {subdirectory}"`
 
-> 4.  Grant read write permissions to new folder
+> 4.  Grant read/write permissions to new folder
 >
 >     `"chmod -R 777 {subdirectory}"`
 
@@ -68,11 +68,13 @@
 
 ### Ubuntu
 
-> 1.  Check config file for errors
+> 1.  SSH into droplet
+
+> 2.  Check config file for errors
 >
 >     `"nginx -t"`
 
-> 2.  Restart NGINX service
+> 3.  Restart NGINX service
 >
 >     `"service nginx restart"`
 
