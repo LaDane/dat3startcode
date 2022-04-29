@@ -1,6 +1,6 @@
 # Frontend setup
 
-## Before starting
+## Preparing Startcode
 
 > 1.  Install packages
 >
@@ -33,13 +33,21 @@
 
 > 1.  SSH into droplet
 
-> 2.  `"cd /var/www/"`
+> 2.  Change directory
+>
+>     `"cd /var/www/"`
 
-> 3.  `"mkdir {subdirectory}"`
+> 3.  Make new subdirectory folder
+>
+>     `"mkdir {subdirectory}"`
 
-> 4.  `"chmod -R 777 {subdirectory}"`
+> 4.  Grant read write permissions to new folder
+>
+>     `"chmod -R 777 {subdirectory}"`
 
-> 5.  `"nano /etc/nginx/sites-enabled/default"`
+> 5.  Edit NGINX config
+>
+>     `"nano /etc/nginx/sites-enabled/default"`
 
 > 6.  Create new location in NGINX config
 >
