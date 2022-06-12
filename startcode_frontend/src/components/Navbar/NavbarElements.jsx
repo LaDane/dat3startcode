@@ -1,4 +1,4 @@
-import { FaBars } from "react-icons/fa";
+// import { FaBars } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -77,7 +77,7 @@ export const NavBtn = styled.nav`
 export const NavBtnLink = styled(Link)`
 	border-radius: 4px;
 	background: #256ce1;
-	padding: 10px 22px;
+	padding: 10px 10px;
 	color: #fff;
 	outline: none;
 	border: none;

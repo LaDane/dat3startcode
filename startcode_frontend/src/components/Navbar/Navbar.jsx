@@ -10,7 +10,7 @@ const Navbar = ({ role, logout }) => {
 					return (
 						<Nav>
 							<NavLink to="/">
-								<img className="logo-img" src={require("../../images/startcode-logo.png")} alt="Logo" />
+								<img className="logo-img" src={require("../../images/app-logo.png")} alt="Logo" />
 							</NavLink>
 							<NavMenu>
 								<NavLink to="/user" activestyle="true">
@@ -28,7 +28,7 @@ const Navbar = ({ role, logout }) => {
 					return (
 						<Nav>
 							<NavLink to="/">
-								<img className="logo-img" src={require("../../images/startcode-logo.png")} alt="Logo" />
+								<img className="logo-img" src={require("../../images/app-logo.png")} alt="Logo" />
 							</NavLink>
 							<NavMenu>
 								<NavLink to="/admin" activestyle="true">
@@ -46,7 +46,7 @@ const Navbar = ({ role, logout }) => {
 					return (
 						<Nav>
 							<NavLink to="/">
-								<img className="logo-img" src={require("../../images/startcode-logo.png")} alt="Logo" />
+								<img className="logo-img" src={require("../../images/app-logo.png")} alt="Logo" />
 							</NavLink>
 							<NavMenu>
 								<NavLink to="/signup" activestyle="true">

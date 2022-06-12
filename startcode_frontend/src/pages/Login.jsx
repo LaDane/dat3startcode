@@ -1,31 +1,33 @@
-import jwt_decode from "jwt-decode"; 
+import jwt_decode from "jwt-decode";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginBox from "../components/Login/LoginBox";
 import facade from "../apiFacade";
+import LoginSignup from "../components/LoginSignup/LoginSignup";
 
 const Login = ({ loggedIn, setLoggedIn, setRole, setUsername }) => {
 	const init = { username: "", password: "" };
 	const [loginCredentials, setLoginCredentials] = useState(init);
+	const [responseText, setResponseText] = useState("");
 
 	const onChange = (evt) => {
 		setLoginCredentials({ ...loginCredentials, [evt.target.id]: evt.target.value });
 	};
 
-	const performLogin = () => {
+	const performLogin = (evt) => {
+		evt.preventDefault();
 		login(loginCredentials.username, loginCredentials.password);
 	};
 
 	const login = (user, pass) => {
-		facade.login(user, pass, setRole).then((res) => {
-            setLoggedIn(true);
+		facade.login(user, pass, setResponseText).then((res) => {
+			setLoggedIn(true);
 			setUsername(user);
-            let token = facade.getToken();
-            let decoded = jwt_decode(token);
-            setRole(decoded.roles);
+			let token = facade.getToken();
+			let decoded = jwt_decode(token);
+			setRole(decoded.roles);
 
-            navigate("/");
+			navigate("/");
 		});
 	};
 
@@ -33,7 +35,7 @@ const Login = ({ loggedIn, setLoggedIn, setRole, setUsername }) => {
 
 	return (
 		<div>
-			<LoginBox loggedIn={loggedIn} onChange={onChange} performLogin={performLogin} />
+			<LoginSignup lsType={"Login"} onChange={onChange} onClick={performLogin} responseText={responseText} />
 		</div>
 	);
 };

@@ -1,6 +1,7 @@
 package security;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.nimbusds.jose.JOSEException;
@@ -34,6 +35,7 @@ public class LoginEndpoint {
     public static final int TOKEN_EXPIRE_TIME = 1000 * 60 * 30; //30 min
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     public static final UserFacade USER_FACADE = UserFacade.getUserFacade(EMF);
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -46,28 +48,51 @@ public class LoginEndpoint {
             username = json.get("username").getAsString();
             password = json.get("password").getAsString();
         } catch (Exception e) {
-           throw new API_Exception("Malformed JSON Suplied",400,e);
+//           throw new API_Exception("Malformed JSON Suplied",400,e);
+            JsonObject jo = new JsonObject();
+            jo.addProperty("status", "ERROR");
+            jo.addProperty("msg", "Malformed JSON Suplied");
+            return Response
+                    .ok(GSON.toJson(jo))
+                    .build();
         }
 
         try {
-            User user = USER_FACADE.getVerifiedUser(username, password);
-            String token = createToken(username, user.getRolesAsStrings());
-            JsonObject responseJson = new JsonObject();
-            responseJson.addProperty("username", username);
-            responseJson.addProperty("token", token);
-            return Response.ok(new Gson().toJson(responseJson)).build();
-
-        } catch (JOSEException | AuthenticationException ex) {
-            if (ex instanceof AuthenticationException) {
-                throw (AuthenticationException) ex;
+            User user = null;
+            try {
+                user = USER_FACADE.getVerifiedUser(username, password);
+            } catch (AuthenticationException ex) {
+                JsonObject jo = new JsonObject();
+                jo.addProperty("status", "ERROR");
+                jo.addProperty("msg", "Invalid username or password! Please try again");
+                return Response
+                        .ok(GSON.toJson(jo))
+                        .build();
             }
-            Logger.getLogger(GenericExceptionMapper.class.getName()).log(Level.SEVERE, null, ex);
+            if (user != null) {
+                String token = createToken(username, user.getRolesAsStrings());
+                JsonObject responseJson = new JsonObject();
+                responseJson.addProperty("username", username);
+                responseJson.addProperty("token", token);
+                return Response.ok(new Gson().toJson(responseJson)).build();
+            }
+        } catch (JOSEException ex) {
+            JsonObject jo = new JsonObject();
+            jo.addProperty("status", "ERROR");
+            jo.addProperty("msg", "Invalid username or password! Please try again");
+            return Response
+                    .ok(GSON.toJson(jo))
+                    .build();
+
+//            if (ex instanceof AuthenticationException) {
+//                throw (AuthenticationException) ex;
+//            }
+//            Logger.getLogger(GenericExceptionMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
         throw new AuthenticationException("Invalid username or password! Please try again");
     }
 
     private String createToken(String userName, List<String> roles) throws JOSEException {
-
         StringBuilder res = new StringBuilder();
         for (String string : roles) {
             res.append(string);

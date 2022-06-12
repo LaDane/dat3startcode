@@ -10,11 +10,15 @@ function handleHttpErrors(res) {
 function apiFacade() {
     /* Insert utility-methods from a later step (d) here (REMEMBER to uncomment in the returned object when you do)*/
 
-    const login = (user, password) => {
+    const login = (user, password, setResponseText) => {
         const options = makeOptions("POST", true, { username: user, password: password });
         return fetch(URL + "/api/login", options)
             .then(handleHttpErrors)
-            .then(res => { setToken(res.token) })
+            .then(res => {
+                setResponseText(res.msg);
+                setToken(res.token);
+                console.log(res.msg);
+            })
     }
 
     const signup = (user, password, setResponseText) => {
@@ -23,8 +27,7 @@ function apiFacade() {
             .then(handleHttpErrors)
             .then(res => {
                 setResponseText(res.msg);
-            }
-            )
+            })
     }
 
     const fetchUserData = (role) => {

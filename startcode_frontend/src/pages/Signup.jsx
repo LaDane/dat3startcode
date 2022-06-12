@@ -1,7 +1,7 @@
 import React from "react";
-import SignupBox from "../components/Signup/SignupBox";
 import { useState } from "react";
 import facade from "../apiFacade";
+import LoginSignup from "../components/LoginSignup/LoginSignup";
 
 const Signup = () => {
 	const init = { username: "", password: "" };
@@ -13,6 +13,7 @@ const Signup = () => {
 	};
 
 	const performSignup = (evt) => {
+		evt.preventDefault();
 		signup(signupCredentials.username, signupCredentials.password);
 	};
 
@@ -22,7 +23,7 @@ const Signup = () => {
 
 	return (
 		<div>
-			<SignupBox onChange={onChange} performSignup={performSignup} responseText={responseText} />
+			<LoginSignup lsType={"Signup"} onChange={onChange} onClick={performSignup} responseText={responseText} />
 		</div>
 	);
 };
